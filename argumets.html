@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Somma con arguments</title>
+</head>
+<body>
+
+  <h2>Somma di numeri usando "arguments"</h2>
+  
+  <label>Inserisci numeri separati da virgola:</label><br>
+  <input type="text" id="inputNumeri" placeholder="es: 1,2,3,4">
+  <button onclick="calcolaSomma()">Calcola somma</button>
+
+  <p id="risultato"></p>
+
+  <script>
+    // Funzione che usa "arguments" per sommare i numeri
+    function sommaNumeri() {
+      let totale = 0;
+      for (let i = 0; i < arguments.length; i++) {
+        totale += arguments[i];
+      }
+      return totale;
+    }
+
+    // Funzione che gestisce l'input utente e mostra il risultato
+    function calcolaSomma() {
+      const input = document.getElementById("inputNumeri").value;
+      const numeri = input.split(",").map(Number);
+
+      // Chiamiamo la funzione usando lo spread per passare i numeri
+      const risultato = sommaNumeri(...numeri);
+
+      document.getElementById("risultato").innerText = "Somma: " + risultato;
+    }
+  </script>
+
+</body>
+</html>
