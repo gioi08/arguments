@@ -8,7 +8,46 @@
     <body>
         <h1>guarda la console</h1>
         <script>
-              
+              // Funzione che calcola il valore di cassa attuale
+                function calcola(cassaIniziale, segno, ...valori) {
+                    let somma = valori.reduce((acc, val) => acc + val, 0);
+                    if (segno === '+') {
+                        return cassaIniziale + somma;
+                    } else if (segno === '-') {
+                        return cassaIniziale - somma;
+                    } else {
+                        alert("Errore: il segno deve essere '+' o '-'");
+                        return cassaIniziale;
+                    }
+                }
+
+                // Programma principale
+                let valoreCassa = parseFloat(prompt("Inserisci il valore di cassa iniziale:", "10"));
+
+                let continua = true;
+
+                while (continua) {
+                    let segno = prompt("Inserisci il segno del flusso di cassa (+ per entrate, - per uscite):");
+                    let valoriInput = prompt("Inserisci i valori separati da virgola (es. 1,2,5,4):");
+
+                    // Converte la stringa di input in numeri
+                    let valori = valoriInput.split(',').map(v => parseFloat(v.trim()));
+
+                    // Calcola il nuovo valore di cassa
+                    valoreCassa = calcola(valoreCassa, segno, ...valori);
+
+                    alert("Valore di cassa attuale: " + valoreCassa);
+                    console.log("Valore di cassa attuale:", valoreCassa);
+
+                    // Chiede se continuare
+                    let risposta = prompt("Vuoi inserire un altro flusso di cassa? (s/n)");
+                    if (risposta.toLowerCase() !== 's') {
+                        continua = false;
+                    }
+                }
+
+                alert("Valore finale in cassa: " + valoreCassa);
+                console.log("Valore finale in cassa:", valoreCassa);
         </script>
     </body>
 </html>
